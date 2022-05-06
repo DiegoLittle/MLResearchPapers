@@ -1,0 +1,8 @@
+api/spans.json
+api/downloads/
+dev.db
+api/spans_index
+__pycache__
+api/pdfs
+web/.env
+api/.env
