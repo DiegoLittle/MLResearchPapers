@@ -10,6 +10,8 @@ Creates a semantic search index on previously mentioned terms using sentence tra
 To download the seeds to the database and create the initial search index
 `cd api`
 `python init.py`
+Import DB
+`python export.py`
 To source papers from ArXiv run
 `python source_papers.py 10`
 To source papers from the papers with code database run
