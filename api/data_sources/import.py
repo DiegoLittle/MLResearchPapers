@@ -66,8 +66,8 @@ def import_db():
         db.bulk_save_objects(docs)
         db.commit()
 
-import_db()
-# export_db()
+# import_db()
+export_db()
 # engine.execute("""
 # CREATE INDEX papers_index 
 #    ON papers USING GIN (to_tsvector('english', title));

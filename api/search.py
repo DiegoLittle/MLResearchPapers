@@ -44,6 +44,22 @@ def search(query,k=10):
     "scores": top_k[0]
 }
 
+from annoy import AnnoyIndex
+
+def search_spans(query,k=10):
+
+    query_vec = model.encode(query,device='cpu',convert_to_numpy=True)
+    f=384
+    u = AnnoyIndex(f, 'angular')
+    u.load('spans_index.ann') # super fast, will just mmap the file
+    search = u.get_nns_by_vector(query_vec, 5)   
+    # for x in search:
+    #     print(papers[x]) 
+    results = [data[x]for x in search]
+    # if(results[0]['arxiv_id'] == arxiv_id):
+    #     results.pop(0)
+    return results
+
 
 if __name__ == "__main__":
     # create_index('spans_index',labels)

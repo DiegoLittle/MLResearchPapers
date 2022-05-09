@@ -28,9 +28,8 @@ def get_paper_citations(paper_id):
 # TODO Handle the case where the paper cant be found '{"error": "Paper with id ARXIV:2204.12023 not found"}
 
 
-dates = [x['date'] for x in fetch_papers()]
-print(dates)
-raise
+#dates = [x['date'] for x in fetch_papers()]
+#print(dates)
 
 num_loops=0
 num_requests = 0

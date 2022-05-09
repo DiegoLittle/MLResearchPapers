@@ -12,12 +12,12 @@ def get_response(search_query, start_index=0):
     add_url = 'search_query=%s&sortBy=lastUpdatedDate&start=%d&max_results=2000' % (search_query, start_index)
     #add_url = 'search_query=%s&sortBy=submittedDate&start=%d&max_results=100' % (search_query, start_index)
     search_query = base_url + add_url
-    logger.debug(f"Searching arxiv for {search_query}")
+    print(f"Searching arxiv for {search_query}")
     with urllib.request.urlopen(search_query) as url:
         response = url.read()
 
     if url.status != 200:
-        logger.error(f"arxiv did not return status 200 response")
+        print(f"arxiv did not return status 200 response")
 
     return response
 
@@ -84,11 +84,13 @@ def getCategories(paper):
     return categories
 
 import sys
-num_pages = sys.argv[1] or 1
+# num_pages = sys.argv[1] or 1
+num_pages = 1
 for i in range(int(num_pages)):
     print(f"Page {i}")
     res = get_response(q,i)
     papers = parse_response(res)
+    print(len(papers))
     from database import SessionLocal, engine
     import json
     from utils.paper_lookup import arxiv_lookup
@@ -98,12 +100,11 @@ for i in range(int(num_pages)):
     for paper in papers:
         # print(paper['_id'])
         lookup = arxiv_lookup(paper['_id'])
-
-
         
         if len(lookup) > 0:
             print('Paper already in database')
             continue
+            
         print(paper['_id'])
         arxiv_id = paper['_id']
         authors = []

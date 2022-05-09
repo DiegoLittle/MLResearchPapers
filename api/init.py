@@ -154,6 +154,7 @@ for i,span in enumerate(spans):
         spans.pop(i)
 with open('spans.json', 'w') as outfile:
     json.dump(spans, outfile)
+
 print("Building spans search index for semantic search")
 f = open('spans.json')
 data = json.load(f)
@@ -163,6 +164,13 @@ for i in data:
     label = i.get('label')
     labels.append(label)
 
+from annoy import AnnoyIndex
+import sys
+sys.path.append('../')
+from database import SessionLocal, engine
+import json
+import numpy as np
+from annoy import AnnoyIndex
 def create_index(name,data:list):
 
     model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -170,9 +178,26 @@ def create_index(name,data:list):
     print("Building faiss index")
     print(encoded_data.shape)
 
-    index = faiss.IndexIDMap(faiss.IndexFlatIP(384))
-    index.add_with_ids(encoded_data, np.array(range(0, len(data))))
 
-    faiss.write_index(index, name)
+
+    f = 384  # Length of item vector that will be indexed
+    i=0
+    t = AnnoyIndex(f, 'angular')
+    for i in range(len(encoded_data)):
+        v = encoded_data[i]
+        # print(v)
+        t.add_item(i, v.tolist())
+
+    t.build(10) # 10 trees
+    t.save('spans_index.ann')
+
+    # with open('papers.json', 'w') as f:
+    #     json.dump([dict(x) for x in papers], f)
+
+
+    # index = faiss.IndexIDMap(faiss.IndexFlatIP(384))
+    # index.add_with_ids(encoded_data, np.array(range(0, len(data))))
+
+    # faiss.write_index(index, name)
 
 create_index('spans_index',labels)

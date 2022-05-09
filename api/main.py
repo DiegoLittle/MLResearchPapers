@@ -38,15 +38,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# from search import search
-# @app.get("/search")
-# def get_search(q:str):
-#     print(q)
-#     res = search(q)
-#     res['scores'] = res['scores'].tolist()
-#     print(res)
-#     return res
-#     # return 
+from search import search_spans
+@app.get("/search")
+def get_search(q:str):
+    print(q)
+    res = search_spans(q)
+    # res['scores'] = res['scores'].tolist()
+    print(res)
+    return res
+    # return 
 from similarity.find import search_similar_papers
 @app.get("/api/similar_papers")
 def get_similar_papers(id:str):

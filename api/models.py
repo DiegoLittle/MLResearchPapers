@@ -22,7 +22,7 @@ class Paper(Base):
     methods = Column(String)
     doi = Column(String)
     grobid = Column(String)
-    references = Column(String)
+    refs = Column(String)
     keywords = Column(String)
     full_text = Column(String)
     s2_paper = Column(String)

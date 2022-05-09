@@ -69,7 +69,7 @@ model papers {
   date         String?
   doi          String?
   grobid       String?
-  references   String?
+  refs   String?
   keywords     String?
   full_text    String?
   s2_paper     String?
