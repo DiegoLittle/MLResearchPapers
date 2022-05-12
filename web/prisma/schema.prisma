@@ -43,7 +43,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  saved_papers papers[]
+  saved_papers  papers[]
 }
 
 model VerificationToken {
@@ -55,25 +55,27 @@ model VerificationToken {
 }
 
 model papers {
-  id           String  @id @default(cuid())
-  title        String?
-  abstract     String?
-  authors      String?
-  arxiv_id     String?
-  categories   String?
-  url_abs      String?
-  url_pdf      String?
-  proceeding   String?
-  tasks        String?
-  methods      String?
-  date         String?
-  doi          String?
-  grobid       String?
-  refs   String?
-  keywords     String?
-  full_text    String?
-  s2_paper     String?
-  s2_citations String?
-
-  saved_by User[]
+  id                        String  @id @default(cuid())
+  title                     String?
+  abstract                  String?
+  authors                   String?
+  arxiv_id                  String?
+  categories                String?
+  url_abs                   String?
+  url_pdf                   String?
+  proceeding                String?
+  tasks                     String?
+  methods                   String?
+  date                      String?
+  doi                       String?
+  grobid                    String?
+  refs                      String?
+  keywords                  String?
+  full_text                 String?
+  s2_paper                  String?
+  s2_citations              String?
+  num_citations             Int?
+  num_references            Int?
+  num_influential_citations Int?
+  saved_by                  User[]
 }

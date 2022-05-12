@@ -31,7 +31,8 @@
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.1"
+    "remark-html": "^15.0.1",
+    "usehooks-ts": "^2.5.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",

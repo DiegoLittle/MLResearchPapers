@@ -25,7 +25,7 @@ const Paper = ({ paper, elements, similar_papers }) => {
   const [load, setLoad] = useState(false)
   const dispatch = useDispatch()
   // const { id } = router.query
-  const { title, url_abs, authors, abstract, url, image, date, categories, _id, references, arxiv_id,id } = paper;
+  const { title, url_abs, authors, abstract, url, image, date, categories, _id, references, arxiv_id,id,num_citations } = paper;
   const [showReferences, setShowReferences] = useState(false)
   const userLibrary = useSelector(selectSavedPapers)
   console.log(userLibrary)
@@ -90,14 +90,17 @@ const Paper = ({ paper, elements, similar_papers }) => {
           <div className="flex text-base">{authors && authors.map((author, i) =>
             <div className="italic">{author}{authors.length == i ? "" : <span>,&nbsp;</span>}</div>
           )}</div>
-          <div>{format_date(date)}</div>
+          <div className=''>{format_date(date)}</div>
+        <div className="text-blue-600 text-sm">
+          Cited by <span className="font-semibold text-base">{num_citations}</span> papers
+        </div>
           <div className='flex my-2'>
           <div>
             {is_paper_saved()?<BookmarkIcon onClick={delete_paper} className='h-8 w-8 mt-1 fill-blue-200 cursor-pointer'></BookmarkIcon>:
             <BookmarkIcon onClick={save_paper} className='h-8 w-8 mt-1 hover:fill-blue-200 cursor-pointer'></BookmarkIcon>
           }
           </div>
-          <Link href={"/read/" + arxiv_id}>
+          <Link href={"https://read.synesthesia.ai/read/" + arxiv_id}>
           <button className='p-2 mx-2 bg-blue-50 text-sm font-medium hover:bg-blue-100 rounded-xl'>Read the paper</button>
           </Link>
           </div>

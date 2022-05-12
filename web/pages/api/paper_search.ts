@@ -45,6 +45,11 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
         item.authors = JSON.parse(item.authors)
         item.methods = JSON.parse(item.methods)
         item.tasks = JSON.parse(item.tasks)
+              // console.log(item.num_citations)
+      // console.log(item.num_citations)
+      if(item.num_citations == null && typeof(JSON.parse(item.s2_paper).citationCount) != 'undefined'){
+        item.num_citations = JSON.parse(item.s2_paper).citationCount
+      }
         return item
       })
       // res.json(result)

@@ -24,6 +24,9 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
                 }
                 paper.authors = JSON.parse(paper.authors)
                 paper.keywords = JSON.parse(paper.keywords)
+                if(paper.num_citations == null && typeof(JSON.parse(paper.s2_paper).citationCount) != 'undefined'){
+                    paper.num_citations = JSON.parse(paper.s2_paper).citationCount
+                  }
                 res.json(paper)
                 // db.get(`SELECT * FROM papers WHERE arxiv_id = ${q}`, (err, result) => {
                 //     if (err) {

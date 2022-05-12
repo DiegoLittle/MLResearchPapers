@@ -35,9 +35,13 @@ export default async function handler(
       item.authors = JSON.parse(item.authors)
       item.methods = JSON.parse(item.methods)
       item.tasks = JSON.parse(item.tasks)
-
+      item.refs = JSON.parse(item.refs)
+      if(item.num_citations == null && typeof(JSON.parse(item.s2_paper).citationCount) != 'undefined'){
+        item.num_citations = JSON.parse(item.s2_paper).citationCount
+      }
       return item
     })
+
     res.json(papers)
     // db.all('SELECT * FROM papers', (err, result) => {
     //   if (err) {
