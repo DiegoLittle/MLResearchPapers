@@ -17,6 +17,9 @@ class Paper(Base):
     url_pdf = Column(String)
     proceeding = Column(String)
     authors = Column(String)
+    num_citations = Column(Integer)
+    num_references = Column(Integer)
+    num_influential_citations = Column(Integer)
     tasks = Column(String)
     date = Column(String)
     methods = Column(String)
@@ -28,6 +31,9 @@ class Paper(Base):
     s2_paper = Column(String)
     s2_citations = Column(String)
 
+# engine.execute('alter table papers add column num_citations int')
+# engine.execute('alter table papers add column num_references int')
+# engine.execute('alter table papers add column num_influential_citations int')
 # Eventually it might make sense to add a relationship to the paper
 # So tasks and methods are in seperate tables
 

@@ -15,6 +15,10 @@ engine = create_engine(
 
 # engine.execute('alter table papers add column S2_paper Text')
 # engine.execute('alter table papers add column S2_citations text')
+# engine.execute('alter table papers add column num_citations int')
+# engine.execute('alter table papers add column num_references int')
+# engine.execute('alter table papers add column num_influential_citations int')
+
 
 # engine.execute('alter table papers add column full_Text String')
 # engine.execute('alter table papers add column keyworkds String')
